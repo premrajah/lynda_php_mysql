@@ -14,7 +14,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>GBI - <?php echo $page_title; ?></title>
 
-  <link rel="stylesheet" href="../css/staff.css">
+  <link rel="stylesheet" href="<?php echo url_for('/css/staff.css'); ?>">
 </head>
 
 <body>
@@ -26,7 +26,7 @@
   <nav>
     <ul>
       <li>
-        <a href="index.php">Menu</a>
+        <a href="<?php echo url_for('/staff/index.php') ?>">Menu</a>
       </li>
     </ul>
   </nav>
