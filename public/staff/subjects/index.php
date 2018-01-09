@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Subjects</title>
-</head>
-<body>
-  
-</body>
-</html>
+<?php require_once('../../../private/initialize.php'); ?>
+
+<?php $page_title = 'Subjects'; ?>
+
+<!-- header -->
+<?php include(SHARED_PATH . '/staff_header.php'); ?>
+
+  <div id="content">
+    <!-- content goes here -->
+  </div>
+
+<!-- footer -->
+<?php include(SHARED_PATH . '/staff_footer.php'); ?>
