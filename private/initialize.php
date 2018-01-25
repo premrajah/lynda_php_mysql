@@ -13,7 +13,7 @@
   // *Use same document root as webserver
   // *Can set a hadcoded value:
   // define(WWW_ROOT, 'http://localhost/lynda/globe_bank/public/');
-  // define(WWW_ROOT, '');
+  // define(WWW_ROOT, ''); (production)
   // * Can dynamically find everything in URL up to "/public"
   $public_end = strpos($_SERVER['SCRIPT_NAME'], '/public') + 7;
   $doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $public_end);

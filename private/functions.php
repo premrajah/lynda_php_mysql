@@ -10,4 +10,32 @@
     return WWW_ROOT . $script_path;
   }
 
+
+  // function to use urlencode() and rawurlencode
+  function u($string=""){
+    return urlencode($string);
+  }
+
+  function raw_u($string=""){
+    return rawurlencode($string);
+  }
+
+  // function for htmlspecialchar()
+  function h($string=""){
+    return htmlspecialchars($string);
+  }
+
+  // 404 error
+  function error_404(){
+    header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
+    echo "<h1>404 Page Not Found</h1>";
+    exit();
+  }
+
+  // 500 Internal Server Error
+  function error_500(){
+    header($_SERVER["SERVER_PROTOCOL"] . " 500 Internal Server Error");
+    echo "<h1>500 Internal Server Error</h1>";
+    exit();
+  }
 ?>
