@@ -1,14 +1,18 @@
 <?php require_once('../../../private/initialize.php');?>
 
-<?php
-//faking database
-$subjects = [
-    ['id' => '1', 'position' => '1', 'visible' => '1', 'menu_name' => 'About'],
-    ['id' => '2', 'position' => '2', 'visible' => '1', 'menu_name' => 'Consumer'],
-    ['id' => '3', 'position' => '3', 'visible' => '1', 'menu_name' => 'Small Business'],
-    ['id' => '4', 'position' => '4', 'visible' => '1', 'menu_name' => 'Commercial'],
-]
-?>
+  <?php
+    // select from db
+    $sql = "SELECT * FROM subjects ";
+    $sql .= "ORDER BY position ASC";
+    $subject_set = fine_all_subjects();
+
+    $subjects = [
+        ['id' => '1', 'position' => '1', 'visible' => '1', 'menu_name' => 'About'],
+        ['id' => '2', 'position' => '2', 'visible' => '1', 'menu_name' => 'Consumer'],
+        ['id' => '3', 'position' => '3', 'visible' => '1', 'menu_name' => 'Small Business'],
+        ['id' => '4', 'position' => '4', 'visible' => '1', 'menu_name' => 'Commercial'],
+    ]
+  ?>
 
   <?php $page_title = 'Subjects';?>
 
@@ -68,6 +72,12 @@ $subjects = [
 
     </table>
     <!-- end table -->
+    
+    
+    <?php 
+      // from memory used by db 
+      mysqli_free_result($subject_set);
+    ?>
 
   </div>
   <!-- end content -->
