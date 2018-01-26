@@ -10,21 +10,23 @@ $subjects = [
 ]
 ?>
 
-<?php $page_title = 'Subjects';?>
+  <?php $page_title = 'Subjects';?>
 
-<!-- header -->
-<?php include SHARED_PATH . '/staff_header.php';?>
+  <!-- header -->
+  <?php include SHARED_PATH . '/staff_header.php';?>
 
 
 
   <div id="content">
-  <p><a href="<?php echo url_for('/staff') ?>">&laquo; Back</a></p>
+    <p>
+      <a href="<?php echo url_for('/staff') ?>">&laquo; Back</a>
+    </p>
     <div class="subjects listing">
       <h1>Subjects</h1>
     </div>
 
     <div class="actions">
-      <a href="" class="action">Create New Subjects</a>
+      <a href="<?php echo url_for('/staff/subjects/new.php'); ?>" class="action">Create New Subjects</a>
     </div>
 
     <table class="list">
@@ -39,15 +41,29 @@ $subjects = [
       </tr>
 
       <?php foreach ($subjects as $subject) {?>
-        <tr>
-          <td><?php echo h($subject['id']); ?></td>
-          <td><?php echo h($subject['position']); ?></td>
-          <td><?php echo $subject['visible'] == 1 ? 'true' : 'false'; ?></td>
-          <td><?php echo h($subject['menu_name']); ?></td>
-          <td><a href="<?php echo url_for('/staff/subjects/show.php?id=' . h(u($subject['id']))); ?>" class="action">View</a></td>
-          <td><a href="" class="action">Edit</a></td>
-          <td><a href="" class="action">Delete</a></td>
-        </tr>
+      <tr>
+        <td>
+          <?php echo h($subject['id']); ?>
+        </td>
+        <td>
+          <?php echo h($subject['position']); ?>
+        </td>
+        <td>
+          <?php echo $subject['visible'] == 1 ? 'true' : 'false'; ?>
+        </td>
+        <td>
+          <?php echo h($subject['menu_name']); ?>
+        </td>
+        <td>
+          <a href="<?php echo url_for('/staff/subjects/show.php?id=' . h(u($subject['id']))); ?>" class="action">View</a>
+        </td>
+        <td>
+          <a href="<?php echo url_for('/staff/subjects/edit.php?id=' . h(u($subject['id']))); ?>" class="action">Edit</a>
+        </td>
+        <td>
+          <a href="" class="action">Delete</a>
+        </td>
+      </tr>
       <?php }?>
 
     </table>
@@ -56,5 +72,5 @@ $subjects = [
   </div>
   <!-- end content -->
 
-<!-- footer -->
-<?php include SHARED_PATH . '/staff_footer.php';?>
+  <!-- footer -->
+  <?php include SHARED_PATH . '/staff_footer.php';?>
