@@ -14,6 +14,9 @@
   $result_set = mysqli_query($connection, $query);
 
   //3. user returned data (if any)
+  while($subject = mysqli_fetch_assoc($result_set)){
+    echo $subject["col_name"] . "<br/>";
+  }
 
   // 4. Release returned data
   mysqli_free_result($result_set);
