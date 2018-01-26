@@ -38,4 +38,9 @@
     echo "<h1>500 Internal Server Error</h1>";
     exit();
   }
+
+  function redirect_to($location){
+    header("Location: " . $location);
+    exit();
+  }
 ?>
