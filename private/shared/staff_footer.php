@@ -6,3 +6,8 @@
   </body>
 
 </html>
+
+<?php 
+  // close db
+  db_disconnect($db);
+?>

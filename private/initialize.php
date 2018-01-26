@@ -23,5 +23,9 @@
 
   // include only once the function file
   require_once('functions.php');
+  require_once('database.php');
+
+  // var to connect tto db
+  $db = db_connect();
 
 ?>
