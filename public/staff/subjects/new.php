@@ -14,5 +14,9 @@ if ($test == '404') {
   exit();
 
 } else {
-    echo 'No error';
+    echo '<h1>Test - No error</h1>';
+    
 }
+
+
+?>
