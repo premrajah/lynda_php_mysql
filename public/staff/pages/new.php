@@ -15,6 +15,7 @@
     echo "Position: " . $position . "<br/>";
     echo "Visible: " . $visible . "<br/>";
   }
+  
 ?>
 
 <?php $page_title = 'Create Page'; ?>
