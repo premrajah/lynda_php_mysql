@@ -1,17 +1,33 @@
 <?php
-require_once('../../../private/initialize.php');
+  require_once('../../../private/initialize.php');
 
-// simple test get request
-$test = $_GET['test'] ?? '';
+  // if id is not set
+  if(!isset($_GET['id'])){
+    redirect_to(url_for('/staff/subjects/index.php'));
+  }
+  // if id is available assign to var $id
+  $id = $_GET['id'];
 
-if ($test == '404') {
-    error_404();
-} elseif ($test == '500') {
-    error_500();
-} elseif ($test == 'redirect') {
-  redirect_to(url_for('/staff/subjects/index.php'));
-  exit();
-}
+  // default values
+  $menu_name = "";
+  $position = "";
+  $visible = "";
+
+  // process form
+  if(is_post_request()){
+
+    //handle form values sent to new.php
+    // PHP 7.0+
+    $menu_name = $_POST['menu_name'] ?? '';
+    $position = $_POST['position'] ?? '';
+    $visible = $_POST['visible'] ?? '';
+
+    echo "Form Parameters <br/>";
+    echo "Main Menu: " . $menu_name . "<br/>";
+    echo "Position: " . $position . "<br/>";
+    echo "Visible: " . $visible . "<br/>";
+
+  }
 ?>
 
     <?php $page_title = "Edit Subject"; ?>
@@ -25,11 +41,11 @@ if ($test == '404') {
         <div class="subject edit">
             <h1>Edit Subject</h1>
 
-            <form action="" method="post">
+            <form action="<?php echo url_for('/staff/subjects/edit.php?id=' . h(u($id))) ?>" method="post">
                 <dl>
                     <dt>Menu Name</dt>
                     <dd>
-                      <input type="text" name="menu_name" value="" />
+                      <input type="text" name="menu_name" value="<?php echo $menu_name ?>" />
                     </dd>
                 </dl>
                 <dl>
