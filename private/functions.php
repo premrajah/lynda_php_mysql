@@ -39,8 +39,19 @@
     exit();
   }
 
+  // redirect url
   function redirect_to($location){
     header("Location: " . $location);
     exit();
+  }
+
+  // check if POST request
+  function is_post_request(){
+    return $_SERVER['REQUEST_METHOD'] == 'POST';
+  }
+
+   // check if GET request
+   function is_get_request(){
+    return $_SERVER['REQUEST_METHOD'] == 'GET';
   }
 ?>
