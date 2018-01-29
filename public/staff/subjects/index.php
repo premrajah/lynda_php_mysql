@@ -16,7 +16,7 @@
 
   <div id="content">
     <p>
-      <a href="<?php echo url_for('/staff') ?>">&laquo; Back</a>
+      <a href="<?php echo url_for('/staff/index.php') ?>">&laquo; Back</a>
     </p>
     <div class="subjects listing">
       <h1>Subjects</h1>
@@ -58,7 +58,7 @@
             <a href="<?php echo url_for('/staff/subjects/edit.php?id=' . h(u($subject['id']))); ?>" class="action">Edit</a>
           </td>
           <td>
-            <a href="" class="action">Delete</a>
+            <a href="<?php echo url_for('/staff/subjects/delete.php?id=' . h(u($subject['id']))); ?>" class="action">Delete</a>
           </td>
         </tr>
       <?php }?>
