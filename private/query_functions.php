@@ -37,6 +37,38 @@ function find_subject_by_id($id){
   return $subject; // returns an assoc array
 }
 
+// INSERT into db
+function insert_subject($menu_name, $position, $visible){
+
+  global $db;
+
+  $sql =  "INSERT INTO subjects ";
+  $sql .= "(menu_name, position, visible) ";
+  $sql .= "VALUES (";
+
+  $sql .= "'" . $menu_name . "',";
+  $sql .= "'" . $position . "',";
+  $sql .= "'" . $visible . "'";
+
+  $sql .= ")";
+
+  // for INSERT statements, $result is true/false
+  $result = mysqli_query($db, $sql);
+
+  // if is successful
+  if($result){
+
+    return true;
+
+  } else {
+
+    echo mysqli_error($db); // get error
+    db_disconnect($db); 
+    exit;
+  }
+
+}
+
 // Query db for all pages
 function find_all_pages(){
   global $db;
