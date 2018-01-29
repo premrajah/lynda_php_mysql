@@ -23,13 +23,19 @@
     $subject['visible'] = $_POST['visible'] ?? '';
 
     $result = update_subject($subject);
-    
+
     redirect_to(url_for('/staff/subjects/show.php?id=' . $id));
 
   } else {
 
      // find single record from db
     $subject = find_subject_by_id($id);
+
+    // how many subjects
+    $subject_set = find_all_subjects();
+    $subject_count = mysqli_num_rows($subject_set);
+
+    mysqli_free_result($subject_set); // free memory
   }
 ?>
 
@@ -55,7 +61,15 @@
           <dt>Position</dt>
           <dd>
             <select name="position">
-              <option value="1" <?php if($subject['position'] == '1' ) { echo " selected"; } ?>>1</option>
+              <?php
+                for($i = 0; $i <= $subject_count; $i++){
+                  echo "<option value='{$i}'";
+                  if($subject['position'] == $i) {
+                    echo " selected";
+                  }
+                  echo ">{$i}</option>";
+                }
+              ?>
             </select>
           </dd>
         </dl>

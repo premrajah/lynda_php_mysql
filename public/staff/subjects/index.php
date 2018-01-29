@@ -4,7 +4,7 @@
     // select from db
     $sql = "SELECT * FROM subjects ";
     $sql .= "ORDER BY position ASC";
-    $subject_set = fine_all_subjects();
+    $subject_set = find_all_subjects();
   ?>
 
   <?php $page_title = 'Subjects';?>

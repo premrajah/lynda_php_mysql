@@ -1,7 +1,7 @@
 <?php
 
 // Query db for all subjects
-function fine_all_subjects()
+function find_all_subjects()
 {
 
     // give $db global scope
@@ -40,7 +40,7 @@ function find_subject_by_id($id)
 }
 
 // INSERT into db
-function insert_subject($menu_name, $position, $visible)
+function insert_subject($subject)
 {
 
     global $db;
@@ -49,9 +49,9 @@ function insert_subject($menu_name, $position, $visible)
     $sql .= "(menu_name, position, visible) ";
     $sql .= "VALUES (";
 
-    $sql .= "'" . $menu_name . "',";
-    $sql .= "'" . $position . "',";
-    $sql .= "'" . $visible . "'";
+    $sql .= "'" . $subject['menu_name'] . "',";
+    $sql .= "'" . $subject['position'] . "',";
+    $sql .= "'" . $subject['visible'] . "'";
 
     $sql .= ")";
 
