@@ -1,86 +1,115 @@
-<?php 
+<?php
 
 // Query db for all subjects
-function fine_all_subjects(){
+function fine_all_subjects()
+{
 
-  // give $db global scope
-  global $db;
+    // give $db global scope
+    global $db;
 
-  // select from db
-  $sql = "SELECT * FROM subjects ";
-  $sql .= "ORDER BY position ASC";
+    // select from db
+    $sql = "SELECT * FROM subjects ";
+    $sql .= "ORDER BY position ASC";
 
-  // show query on page
-  // echo $sql . "<br/>"; 
+    // show query on page
+    // echo $sql . "<br/>";
 
-  $result = mysqli_query($db, $sql);
+    $result = mysqli_query($db, $sql);
 
-  confirm_result_set($result); // check if query successful
+    confirm_result_set($result); // check if query successful
 
-  return $result;
+    return $result;
 }
 
 ////
-function find_subject_by_id($id){
-  global $db;
+function find_subject_by_id($id)
+{
+    global $db;
 
-  $sql = "SELECT * FROM subjects ";
-  $sql .= "WHERE id='" . $id . "'"; // always use single quotes to avoid sql injection
-  $result = mysqli_query($db, $sql);
+    $sql = "SELECT * FROM subjects ";
+    $sql .= "WHERE id='" . $id . "'"; // always use single quotes to avoid sql injection
+    $result = mysqli_query($db, $sql);
 
-  confirm_result_set($result);
+    confirm_result_set($result);
 
-  $subject = mysqli_fetch_assoc($result);
+    $subject = mysqli_fetch_assoc($result);
 
-  mysqli_free_result($result);
+    mysqli_free_result($result);
 
-  return $subject; // returns an assoc array
+    return $subject; // returns an assoc array
 }
 
 // INSERT into db
-function insert_subject($menu_name, $position, $visible){
+function insert_subject($menu_name, $position, $visible)
+{
 
-  global $db;
+    global $db;
 
-  $sql =  "INSERT INTO subjects ";
-  $sql .= "(menu_name, position, visible) ";
-  $sql .= "VALUES (";
+    $sql = "INSERT INTO subjects ";
+    $sql .= "(menu_name, position, visible) ";
+    $sql .= "VALUES (";
 
-  $sql .= "'" . $menu_name . "',";
-  $sql .= "'" . $position . "',";
-  $sql .= "'" . $visible . "'";
+    $sql .= "'" . $menu_name . "',";
+    $sql .= "'" . $position . "',";
+    $sql .= "'" . $visible . "'";
 
-  $sql .= ")";
+    $sql .= ")";
 
-  // for INSERT statements, $result is true/false
-  $result = mysqli_query($db, $sql);
+    // for INSERT statements, $result is true/false
+    $result = mysqli_query($db, $sql);
 
-  // if is successful
-  if($result){
+    // if is successful
+    if ($result) {
 
-    return true;
+        return true;
 
-  } else {
+    } else {
 
-    echo mysqli_error($db); // get error
-    db_disconnect($db); 
-    exit;
-  }
+        echo mysqli_error($db); // get error
+        db_disconnect($db);
+        exit;
+    }
+
+}
+
+function update_subject($subject)
+{   
+    global $db;
+
+    $sql = "UPDATE subjects SET ";
+    $sql .= "menu_name='" . $subject['menu_name'] . "',";
+    $sql .= "position='" . $subject['position'] . "',";
+    $sql .= "visible='" . $subject['visible'] . "' ";
+    $sql .= "WHERE id='" . $subject['id'] . "' ";
+    $sql .= "LIMIT 1"; // precaution
+
+    $result = mysqli_query($db, $sql);
+
+    //for UPDATE statements, $result is true/false
+    if ($result) {
+        
+      return true;
+
+    } else {
+        // UPDATE failed
+        echo mysqli_error($db); // get error
+        db_disconnect($db);
+        exit;
+    }
 
 }
 
 // Query db for all pages
-function find_all_pages(){
-  global $db;
+function find_all_pages()
+{
+    global $db;
 
-  $sql = "SELECT * FROM pages ";
-  $sql .= "ORDER BY subject_id ASC, position ASC";
-  $result = mysqli_query($db, $sql);
+    $sql = "SELECT * FROM pages ";
+    $sql .= "ORDER BY subject_id ASC, position ASC";
+    $result = mysqli_query($db, $sql);
 
-  confirm_result_set($result);
+    confirm_result_set($result);
 
-  return $result;
+    return $result;
 
 }
-
-?>
